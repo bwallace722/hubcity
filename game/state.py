@@ -10,7 +10,14 @@ class State(object):
         
 
 class Organism(object):
-    pass
+    
+    def __init__(self,cells):
+        self.cells = cells
+
+    def add_cells(self, cells):
+        self.cells += cells
+
+    
 
 class Action(object):
     pass
