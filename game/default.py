@@ -11,7 +11,9 @@ def get_default_state():
 			org1.add_cells([(x, y)])
 			
 	food1 = state.Food([(1,2)])
-	food1.add_cells([(2,1)])
+	food1.add_cells([(2,2)])
+	food1.add_cells([(2,3)])
+
 
 	default_state = state.State(100, 100)
 	default_state.organisms = [org1]
@@ -24,11 +26,9 @@ def run_game():
 
 	for turns in range(15):
 		default_state.transition([])
-		if len(default_state.organisms) >0:
-			print default_state.organisms[0].cells
-			print default_state.foods[0].cells
-		else:
-			print 'Game Over'
+		print default_state
+		time.sleep(.5)
+
 
 	
 run_game()

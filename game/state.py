@@ -25,9 +25,37 @@ class State(object):
 
 
        
+#Prints Game Board
+    def __str__(self):
 
-    def __str__(self): 
-        pass
+        dish = []
+        orgcells = []
+        foodcells = []
+        s = ""
+        for org in self.organisms:
+            for cells in org.cells:
+                orgcells.append(cells)
+        for food in self.foods:
+            for cells in food.cells:
+                foodcells.append(cells)
+        for y in range(self.height):
+            dish.append(["X"]*self.height)
+        for cells in orgcells:
+            if foodcells.count(cells)>0:
+                dish[cells[0]][cells[1]] = 'E'
+            else:
+                dish[cells[0]][cells[1]] = 'O'
+        for cells in foodcells:
+            if orgcells.count(cells)>0:
+                dish[cells[0]][cells[1]] = 'E'
+            else:
+                dish[cells[0]][cells[1]] = 'F'
+        for row in dish:
+            s = '{}\n{}'.format(s,"".join(row))
+        return s
+
+        
+
 
 
 class Organism(object):
