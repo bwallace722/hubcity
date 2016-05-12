@@ -1,8 +1,10 @@
 class State(object):
 
-    def __init__(self):
+    def __init__(self, width, height):
         self.organisms = []
-        self.size = {'X': 1000,'Y': 1000}
+        self.width = width
+        self.height = height
+
 
     def transition(self, actions):
         pass
