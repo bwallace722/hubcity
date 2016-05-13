@@ -1,6 +1,6 @@
 import state
 import time
-# get_default_state returns an instance of game.State that's 100 x 100
+# get_default_state returns an instance of game.State that's 10 x 10
 # and contains a single organism with 9 cells on the square with opposite
 # corners at 0, 0 and 2, 2.
 def get_default_state():
@@ -15,28 +15,7 @@ def get_default_state():
 	food1.add_cells([(2,3)])
 
 
-	default_state = state.State(100, 100)
+	default_state = state.State(10, 10)
 	default_state.organisms = [org1]
 	default_state.foods = [food1]
 	return default_state
-	
-
-def run_game():
-	default_state = get_default_state()
-
-	for turns in range(15):
-		default_state.transition([])
-		print default_state
-		time.sleep(.5)
-
-
-	
-run_game()
-
-
-
-
-
-
-
-    
