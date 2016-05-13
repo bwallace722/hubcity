@@ -12,7 +12,7 @@ class State(object):
         self.foods = []
 
     def game_going(self):
-        return bool(state.organisms)
+        return bool(self.organisms)
 
     # TODO: implement transition
     # The transition function runs a single step of the game.
@@ -44,7 +44,7 @@ class State(object):
 
     def __str__(self):
 
-        dish = [[State.Empty for _ in range(self.width)] for _ in range(self.height)]
+        dish = [[State.EMPTY for _ in range(self.width)] for _ in range(self.height)]
 
         organism_cells = set([cell for org in self.organisms for cell in org.cells])
         food_cells = set([cell for food in self.foods for cell in food.cells])
@@ -61,7 +61,7 @@ class State(object):
                     elif is_food:
                         dish[y][x] = State.FOOD
 
-        return '\n'.join[''.join(row) for row in dish]
+        return '\n'.join([''.join(row) for row in dish])
 
         
 

@@ -4,7 +4,7 @@ import default
 
 # main creates a default game state and runs it until the game is over.
 def main():
-    default_state = get_default_state()
+    default_state = default.get_default_state()
 
     while default_state.game_going():
         default_state.transition([])
