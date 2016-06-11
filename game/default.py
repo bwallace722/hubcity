@@ -4,7 +4,7 @@ import time
 # and contains a single organism with 9 cells on the square with opposite
 # corners at 0, 0 and 2, 2.
 def get_default_state():
-	org1 = state.Organism([],100)
+	org1 = state.Organism({},10)
 	
 	for x in range(3):
 		for y in range(3):

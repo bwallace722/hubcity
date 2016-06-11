@@ -1,3 +1,7 @@
+import random
+
+
+
 class State(object):
 
     OVERLAP = 'E'
@@ -28,16 +32,17 @@ class State(object):
     # overlapping two different organisms loses two cells.
     # Organisms may not overlap.
     def transition(self, actions):
+        
         for organism in self.organisms:
             for food in self.foods:
                 overlapping_cells = set(organism.cells) & set(food.cells)
-                
                 if overlapping_cells:
-                    organism.foodstore += 2
-                    food.delete_cell(overlapping_cells.pop())
-            organism.foodstore -= 1
+                    organism.foodstore += 1
+                    food.delete_cell(list(overlapping_cells)[random.randrange(len(overlapping_cells))])
+                else:
+                    organism.foodstore -= 1
             if organism.foodstore <= 0:
-                organism.delete_cells(organism.cells[0])
+                organism.delete_cell(list(organism.cells)[random.randrange(len(organism.cells))])
             if len(organism.cells) == 0:
                 self.organisms.remove(organism)
 
@@ -70,11 +75,11 @@ class State(object):
 class Organism(object):
     
     def __init__(self, cells, starting_food_supply):
-        self.cells = cells
+        self.cells = set(cells)
         self.foodstore = starting_food_supply
 
     def add_cells(self, cells):
-        self.cells += cells
+        self.cells |= set(cells)
 
     def delete_cell(self, cell):
         self.cells.remove(cell)
@@ -82,13 +87,15 @@ class Organism(object):
 class Food(object):
 
     def __init__(self, cells):
-        self.cells = cells
+        self.cells = set(cells)
 
     def add_cells(self, cells):
-        self.cells += cells
+        self.cells |= set(cells)
 
     def delete_cell(self, cell):
         self.cells.remove(cell)
 
 class Action(object):
     pass
+
+
